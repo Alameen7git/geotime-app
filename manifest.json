@@ -1,0 +1,17 @@
+{
+  "name": "GeoTime Timesheet",
+  "short_name": "GeoTime",
+  "description": "Location-based progressive timesheet application.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f111a",
+  "theme_color": "#0f111a",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

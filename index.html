@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Timesheet Core</title>
+    <meta name="description" content="A premium location-based timesheet tracker.">
+    
+    <!-- Progressive Web App Setup -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0f111a">
+    <link rel="apple-touch-icon" href="icon.svg">
+    
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-background">
+        <!-- Abstract glowing orbs for premium feel -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="container glass-panel">
+        <header>
+            <h1>Geo<span class="highlight">Time</span></h1>
+            <p class="subtitle">Location-based autonomous timesheet.</p>
+        </header>
+
+        <section id="status-card" class="card status-section">
+            <div class="radar-container">
+                <div class="radar-ping" id="radar-visual"></div>
+                <div class="status-indicator">
+                    <span id="current-status-icon">📍</span>
+                </div>
+            </div>
+            
+            <div class="status-text">
+                <h2 id="status-heading">Awaiting GPS...</h2>
+                <p id="distance-text">Calculated distance will appear here.</p>
+            </div>
+            
+            <div class="actions">
+                <button id="set-workspace-btn" class="btn primary-btn">
+                    Set Current Location as Workspace
+                </button>
+            </div>
+        </section>
+
+        <div class="row">
+            <section class="card settings-section">
+                <h3>Settings</h3>
+                <div class="setting-item">
+                    <label for="workspace-radius">Workspace Radius (meters):</label>
+                    <input type="number" id="workspace-radius" value="100" min="10" step="10">
+                </div>
+                <div class="setting-item dev-mode">
+                    <label for="dev-mode-toggle" title="Reduces the exit timeout to 10 seconds for testing.">
+                        🧪 Dev Mode (10s exit timeout)
+                    </label>
+                    <input type="checkbox" id="dev-mode-toggle">
+                </div>
+                <div class="debug-info">
+                    <span id="coord-info">Workspace lat/lng: Not set</span>
+                </div>
+            </section>
+
+            <section class="card shift-section">
+                <h3>Current Shift</h3>
+                <div class="current-shift-details">
+                    <div class="shift-time" id="current-shift-time">--:--:--</div>
+                    <div class="shift-label" id="current-shift-label">Not Clocked In</div>
+                </div>
+            </section>
+        </div>
+
+        <section class="card timesheet-section">
+            <div class="timesheet-header">
+                <h3>Timesheet Logs</h3>
+                <div class="header-actions">
+                    <button id="export-excel-btn" class="btn primary-btn" style="margin-right: 0.5rem; padding: 0.5rem 1rem;">⬇️ Export CSV</button>
+                    <button id="clear-logs-btn" class="btn text-btn" style="padding: 0.5rem 1rem;">Clear</button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="timesheet-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Clock In</th>
+                            <th>Clock Out</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timesheet-body">
+                        <!-- Entries added dynamically -->
+                    </tbody>
+                </table>
+                <div id="empty-state" class="empty-state">
+                    No shifts logged yet.
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
